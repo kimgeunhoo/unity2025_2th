@@ -23,17 +23,18 @@ public class BattleManager : MonoBehaviour
 
     // Enemy 행동한다.
 
+    public Battle Player;
     public Battle Enemy;
    public void EnemyAI()
     {
         // 랜덤으로 0 ~ 2 숫자 받아온다
         int RandomValue = UnityEngine.Random.Range(0, 3);
+        //Debug.Log($"랜덤 값의 정확성 확인{RandomValue}");
 
         switch(RandomValue) 
         { 
             case 0:
-                Debug.Log($"Enemy의 공격");
-                //Enemy.Attack();
+                Enemy.Attack(Player);
                 break;
             case 1:
                 Enemy.Recover(10);

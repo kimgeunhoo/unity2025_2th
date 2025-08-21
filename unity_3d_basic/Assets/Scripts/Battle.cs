@@ -10,6 +10,7 @@ public class BattleEntity
     public int HP;
     public int ATK;
     public int DEF;
+    public int MANA;
     public string AttackType;
 
 
@@ -27,17 +28,30 @@ public class BattleEntity
         ATK = aTK;
         DEF = dEF;
     }
+    public BattleEntity(int hP, int aTK, int dEF, int mANA)
+    {
+        HP = hP;
+        ATK = aTK;
+        DEF = dEF;
+        MANA = mANA;
+    }
 }
 
 [System.Serializable]
 public class BattleUI
 {
     public Image HpBar;
+    public Image ManaBar;
     public TextMeshProUGUI BattleEntityText;
 
     public void SetBattleUI(BattleEntity battleEntity)
     {
-        BattleEntityText.SetText($"HP : {battleEntity.HP}, ATK : {battleEntity.ATK}, DEF : {battleEntity.DEF}");
+        BattleEntityText.SetText($"HP : {battleEntity.HP}, ATK : {battleEntity.ATK}, DEF : {battleEntity.DEF}, Mana : {battleEntity.MANA}");
+    }
+
+    public void SetSkillUI(BattleEntity battleEntity)
+    {
+
     }
 
     public void SetHPBar(int current, int max)
@@ -45,15 +59,45 @@ public class BattleUI
         HpBar.fillAmount = (float)current / max;
     }
 
+    public void SetManaBar(int current, int max) 
+    {
+        ManaBar.fillAmount = (float)current / max;    
+    }
+
 }
 
-public class Battle : MonoBehaviour
+// 추상 클래스.
+// 이 클래스를 인스턴스 할 수 없다.
+// 이 클래스를 오브젝트의 컴포넌트로 사용하지 마시오.
+// Player, Monster를 사용해서 이 클래스를 구현하라.
+// 메소드에 abstrct 키워드 추가할 수 있다.
+
+
+public abstract class Battle : MonoBehaviour
 {
     public BattleEntity battleEntity;
     public BattleUI battleUI;
     public BattleManager battleManager;
 
-    public bool IsPlayer;
+    public int Mana { 
+        get
+        {
+            if (currentMana <= 0)
+            {
+                
+            }
+            else
+            {
+
+            }
+            return currentMana;
+        }
+        private set
+        {
+
+        }
+    }
+    
 
     public int CurrentHP {
         get {
@@ -78,16 +122,17 @@ public class Battle : MonoBehaviour
     } // Battle 클래스에서 현재 체력 변수를 수정 할수 있다.
 
     [SerializeField] private int currentHP;
-
+    [SerializeField] private int currentMana;
 
     // Start is called before the first frame update
     void Start()
     {
         // battleEntity = new BattleEntity(playerHP, playerATK, playerDEF);
 
-        Debug.Log($"HP : {battleEntity.HP}, ATK : {battleEntity.ATK}, DEF : {battleEntity.DEF}");
+        Debug.Log($"HP : {battleEntity.HP}, ATK : {battleEntity.ATK}, DEF : {battleEntity.DEF}, Mana : {battleEntity.MANA}");
         battleUI.SetBattleUI(battleEntity);
         CurrentHP = battleEntity.HP;
+        
     }
 
     // Update is called once per frame
@@ -115,24 +160,21 @@ public class Battle : MonoBehaviour
         // 사망 이벤트 호출
         Debug.Log($"사망했습니다, 현재 체력 : {currentHP}");
     }
+    public abstract void Attack(Battle other);
 
-    //public void Attack()
-    //{
-    //
-    //}
-
-    public void Recover(int amount)
+    public virtual void Recover(int amount)
     {
-        if (IsPlayer && !battleManager.playerTurn) return;
-
         CurrentHP += amount;
     }
 
-    public void ShieldUp(int amount)
+    public virtual void ShieldUp(int amount)
     {
-        if (IsPlayer && !battleManager.playerTurn) return;
-
         battleEntity.DEF += amount;
+        battleUI.SetBattleUI(battleEntity);
+    }
+    
+    public void UseSkill(int amount)
+    {
         battleUI.SetBattleUI(battleEntity);
     }
 }

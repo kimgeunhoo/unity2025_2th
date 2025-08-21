@@ -208,7 +208,6 @@ GameObject:
   m_Component:
   - component: {fileID: 84628162}
   - component: {fileID: 84628161}
-  - component: {fileID: 84628163}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -230,14 +229,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   battleEntity:
     HP: 100
-    ATK: 10
+    ATK: 20
     DEF: 1
     AttackType: normal
   battleUI:
     HpBar: {fileID: 1244732698}
     BattleEntityText: {fileID: 2065949616}
-  battleManager: {fileID: 0}
-  IsPlayer: 0
+  battleManager: {fileID: 520962157}
   currentHP: 0
 --- !u!4 &84628162
 Transform:
@@ -254,20 +252,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &84628163
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 84628160}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0d2a75479934efc42b5b4efaee5f4e39, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerTurn: 1
-  Enemy: {fileID: 0}
 --- !u!1 &203844586
 GameObject:
   m_ObjectHideFlags: 0
@@ -717,7 +701,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerTurn: 1
-  Enemy: {fileID: 0}
+  Player: {fileID: 1326937450}
+  Enemy: {fileID: 84628161}
 --- !u!1 &545530268
 GameObject:
   m_ObjectHideFlags: 0
@@ -1649,12 +1634,12 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 84628161}
-        m_TargetAssemblyTypeName: Battle, Assembly-CSharp
-        m_MethodName: TakeDamage
+      - m_Target: {fileID: 1326937450}
+        m_TargetAssemblyTypeName: Player, Assembly-CSharp
+        m_MethodName: Attack
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 1326937450}
+          m_ObjectArgument: {fileID: 84628161}
           m_ObjectArgumentAssemblyTypeName: Battle, Assembly-CSharp
           m_IntArgument: 10
           m_FloatArgument: 0
@@ -1709,7 +1694,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1326937451}
   - component: {fileID: 1326937450}
-  - component: {fileID: 1326937452}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -1731,14 +1715,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   battleEntity:
     HP: 150
-    ATK: 30
+    ATK: 20
     DEF: 5
     AttackType: normal
   battleUI:
     HpBar: {fileID: 1460130307}
     BattleEntityText: {fileID: 1634400806}
-  battleManager: {fileID: 0}
-  IsPlayer: 1
+  battleManager: {fileID: 520962157}
   currentHP: 0
 --- !u!4 &1326937451
 Transform:
@@ -1755,20 +1738,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1326937452
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1326937449}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0d2a75479934efc42b5b4efaee5f4e39, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerTurn: 1
-  Enemy: {fileID: 0}
 --- !u!1 &1341423622
 GameObject:
   m_ObjectHideFlags: 0
