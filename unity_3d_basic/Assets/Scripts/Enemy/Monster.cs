@@ -5,40 +5,76 @@ using UnityEngine;
 // 부모의 함수를 가져와서 사용하는 방법을 학습.
 // 부모의 함수를 다시 정의한다 (재정의) override
 
-public class Monster : Battle
+namespace BattleEample
 {
-    public override void Attack(Battle other)
+    public class Monster : Battle
     {
-        if (battleManager.playerTurn) return;
+        [SerializeField] Animator animator;
 
-        // Battle컴포넌트를 가진 상대가 TakeDamage(this.BattleEntity);
+        public override void Attack(Battle other)
+        {
+            if (battleManager.playerTurn) return;
 
-        other.TakeDamage(this);
-    }
+            // Battle컴포넌트를 가진 상대가 TakeDamage(this.BattleEntity);
 
-    //public override void Attack()
-    //{
-    //    // battleManager에서 player턴이면 실행 하지 마시오
-    //    if (battleManager.playerTurn) return;
+            other.TakeDamage(this);
 
-    //    //base.Attack(); // 몬스터의 공격 로직을 실행 후,
+            animator.SetTrigger("Monster Attack");  // 공격 애니메이션 실행
+            other.TakeDamage(this);                 // 데미지 로직 실행
+        }
 
-    //    Debug.Log("Monster Attack!");
-    //    // battleManager에서 턴을 종료한다. - 몬스터는 할 필요가 없다.
-    //}
+        //public override void Attack()
+        //{
+        //    // battleManager에서 player턴이면 실행 하지 마시오
+        //    if (battleManager.playerTurn) return;
 
-    public override void Recover(int amount)
-    {
-        if (battleManager.playerTurn) return;
+        //    //base.Attack(); // 몬스터의 공격 로직을 실행 후,
 
-        base.Recover(amount);
-    }
+        //    Debug.Log("Monster Attack!");
+        //    // battleManager에서 턴을 종료한다. - 몬스터는 할 필요가 없다.
+        //}
 
-    public override void ShieldUp(int amount)
-    {
-        if (battleManager.playerTurn) return;
+        public override void Recover(int amount)
+        {
+            if (battleManager.playerTurn) return;
 
-        base.ShieldUp(amount);
+            base.Recover(amount);
+        }
+
+        public override void ShieldUp(int amount)
+        {
+            if (battleManager.playerTurn) return;
+
+            base.ShieldUp(amount);
+        }
+
+        public override void AttackSkill(Battle other)
+        {
+            if (battleManager.playerTurn) return;
+
+            Debug.Log("Enemy using Attack Skill!");
+            other.useMana(this);
+            other.TakeDamage(this);
+            battleManager.TurnChange();
+        }
+
+        public override void MagicSkill(Battle other, int amount)
+        {
+            if (battleManager.playerTurn) return;
+            Debug.Log("Enemy using Magic Skill!");
+            other.useMana(this);
+            base.Recover(amount);
+            battleManager.TurnChange();
+        }
+
+        public override void DefenseSkill(Battle other, int amount)
+        {
+            if (battleManager.playerTurn) return;
+            Debug.Log("Player using Magic Skill!");
+            other.useMana(this);
+            base.ShieldUp(amount);
+            battleManager.TurnChange();
+        }
     }
 
 }

@@ -16,29 +16,73 @@ using UnityEngine;
     base 키워드를 사용 가능
  */
 
-public class Player : Battle
+namespace BattleEample
 {
-    public override void Attack(Battle other)
+    
+    public class Player : Battle
     {
-        if (!battleManager.playerTurn) return;
+        [SerializeField] Animator animator; 
+        Player player;
+        public override void Attack(Battle other)
+        {
+            if (!battleManager.playerTurn) return;
 
-        other.TakeDamage(this);
-        battleManager.TurnChange();
+            animator.SetTrigger("Player Attack"); 
+            other.TakeDamage(this);
+            battleManager.TurnChange();
+        }
+
+        // SetTrigger 실행할 때 애니메이션 파라미터 이름과 동일하지 않으면 에러 발생
+
+        public override void Recover(int amount)
+        {
+            if (!battleManager.playerTurn) return;
+
+            base.Recover(amount);
+            animator.SetTrigger("Player Recover");
+            battleManager.TurnChange();
+        }
+
+        public override void ShieldUp(int amount)
+        {
+            if (!battleManager.playerTurn) return;
+
+            base.ShieldUp(amount);
+            animator.SetTrigger("Player ShieldUp");
+            battleManager.TurnChange();
+        }
+
+
+        // 추가코드
+        public override void AttackSkill(Battle other)
+        {
+            if (!battleManager.playerTurn) return;
+
+            Debug.Log("Player using Attack Skill!");
+            useMana(this); // 마나 사용
+                           // TakeDamage 외의 다른 스킬 매커니즘 적용가능
+            other.HeadStrike(this);
+            battleManager.TurnChange();
+        }
+
+        public override void MagicSkill(Battle other, int amount)
+        {
+            if (!battleManager.playerTurn) return;
+            Debug.Log("Player using Magic Skill!");
+
+
+            base.InhancedHeal(amount);
+            battleManager.TurnChange();
+        }
+
+        public override void DefenseSkill(Battle other, int amount)
+        {
+            if (!battleManager.playerTurn) return;
+            Debug.Log("Player using Magic Skill!");
+
+            base.IronGuard(amount);
+            battleManager.TurnChange();
+        }
     }
 
-    public override void Recover(int amount)
-    {
-        if (!battleManager.playerTurn) return;
-
-        base.Recover(amount);
-        battleManager.TurnChange();
-    }
-
-    public override void ShieldUp(int amount)
-    {
-        if (!battleManager.playerTurn) return;
-
-        base.ShieldUp(amount);
-        battleManager.TurnChange();
-    }
 }

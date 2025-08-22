@@ -25,8 +25,9 @@ public class BattleManager : MonoBehaviour
 
     public Battle Player;
     public Battle Enemy;
+
    public void EnemyAI()
-    {
+   {
         // 랜덤으로 0 ~ 2 숫자 받아온다
         int RandomValue = UnityEngine.Random.Range(0, 3);
         //Debug.Log($"랜덤 값의 정확성 확인{RandomValue}");
@@ -42,6 +43,15 @@ public class BattleManager : MonoBehaviour
             case 2:
                 Enemy.ShieldUp(5);
                 break;
+            //case 3:
+            //    Enemy.AttackSkill(Player);
+            //    break;
+            //case 4:
+            //    Enemy.MagicSkill(Enemy, 10);
+            //    break;
+            //case 5:
+            //    Enemy.DefenseSkill(Enemy, 5);
+            //    break;
         }
-    }
+   }
 }
