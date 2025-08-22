@@ -17,7 +17,11 @@ public class Player : Battle
     }
     public override void Attack(Battle other)
     {
-        
+        if (!battleManager.playerTurn) return;
+
+        animator.SetTrigger("Player Attack");
+        other.TakeDamage(this);
+        battleManager.TurnChange();
     }
 
     public override void Attack()
@@ -38,14 +42,20 @@ public class Player : Battle
 
     public override void ShieldUp(int amount)
     {
+        if (!battleManager.playerTurn) return;
+
         base.ShieldUp(amount);
         animator.SetTrigger("Player ShieldUp");
+        battleManager.TurnChange();
     }
 
     public override void Recover(int amount)
     {
+        if (!battleManager.playerTurn) return;
+
         base.Recover(amount);
         animator.SetTrigger("Player Recover");
+        battleManager.TurnChange();
     }
 
     private void Update()
