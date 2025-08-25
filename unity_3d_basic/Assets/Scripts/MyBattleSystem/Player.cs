@@ -11,10 +11,10 @@ public class Player : Battle
     // 2. 변수에 데이터를 초기화할 것인가? <1> 유니티 인스펙터 <2> 코드 사용
     [SerializeField] Animator animator;
 
-    //private void Start()
-    //{
-    //    attackChecker = GetComponentInChildren<AttackChecker>();
-    //}
+    private void Start()
+    {
+        attackChecker = GetComponentInChildren<AttackChecker>();
+    }
     public override void Attack(Battle other)
     {
         if (!battleManager.playerTurn) return;
