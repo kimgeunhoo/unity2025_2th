@@ -39,7 +39,7 @@ namespace BattleEample
             if (!battleManager.playerTurn) return;
 
             base.Recover(amount);
-            animator.SetTrigger("Player Recover");
+            //animator.SetTrigger("Player Recover");
             battleManager.TurnChange();
         }
 
