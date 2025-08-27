@@ -1,6 +1,8 @@
+using Example;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Example;
 
 public class MonsterSpawner : MonoBehaviour
 {
@@ -9,6 +11,8 @@ public class MonsterSpawner : MonoBehaviour
     [Header("몬스터 생성 정보")]
     [SerializeField] Transform[] spawnPositions;
     [SerializeField] GameObject[] spawnMonsters;
+    [SerializeField] MonsterInfo[] monsterInfos;
+
     [SerializeField] int spawnCount = 5;
     [SerializeField] float spawnIntervalTime = 0.75f;
     private Coroutine spawnCoroutine;
@@ -54,8 +58,11 @@ public class MonsterSpawner : MonoBehaviour
             int randomIndex = UnityEngine.Random.Range(0, spawnPositions.Length);
             int randomMonsterIndex = UnityEngine.Random.Range(0, spawnMonsters.Length);
 
-
             Instantiate(spawnMonsters[randomMonsterIndex], spawnPositions[randomIndex]);
+
+            // monsterInfo
+          //  monsterInfos[randomMonsterIndex].MonsterConstructor();
+
 
             // interval 시간 후에 위 코드를 다시 실행하라
             yield return new WaitForSeconds(spawnIntervalTime);
