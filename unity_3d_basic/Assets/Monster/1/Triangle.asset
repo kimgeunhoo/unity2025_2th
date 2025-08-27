@@ -17,4 +17,4 @@ MonoBehaviour:
   Size: 1
   monsterName: "\uC0BC\uAC01"
   collider: {fileID: 0}
-  color: {r: 0.9811321, g: 0.39340216, b: 0.27305093, a: 0}
+  color: {r: 0.9811321, g: 0.39340216, b: 0.27305093, a: 1}
