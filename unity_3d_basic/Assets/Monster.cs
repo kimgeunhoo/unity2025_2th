@@ -30,7 +30,7 @@ namespace Example
         // 생성을 하기 위해서 컴포넌트에 데이터를 넣어준다.
 
         [ContextMenu("몬스터 생성")]
-        private void MonsterConstructor()
+        public void MonsterConstructor()
         {
             GameObject instance = new GameObject();
             instance.transform.localScale = Vector3.one * monsterInfo.Size;
