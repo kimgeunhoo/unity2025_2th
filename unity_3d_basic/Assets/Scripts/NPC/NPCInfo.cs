@@ -12,6 +12,8 @@ public class NPCInfo : ScriptableObject
     public int MinSpeed;
     public int MaxSpeed;
     public int PatrolRadius;
+    public float stopDistance = 0.1f;
+    public float patrolDistance = 5f;
     public Sprite Sprite;
     public string NpcName;
 }

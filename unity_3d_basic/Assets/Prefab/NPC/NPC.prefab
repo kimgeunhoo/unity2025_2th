@@ -48,6 +48,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   npcInfo: {fileID: 11400000, guid: 3733c3e21f0d8094eb5e6bc109fcbc16, type: 2}
+  stopDistance: 0.01
+  currentTargetPos: {x: 0, y: 0}
+  IsMoving: 0
 --- !u!212 &2940195477229176335
 SpriteRenderer:
   m_ObjectHideFlags: 0

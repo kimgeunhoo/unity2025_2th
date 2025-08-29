@@ -14,6 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MinSpeed: 1
   MaxSpeed: 3
-  PatrolRadius: 2
+  PatrolRadius: 3
+  stopDistance: 0.1
+  patrolDistance: 5
   Sprite: {fileID: 961133393, guid: a93fa3a34c5590742a88fc4b994959ee, type: 3}
   NpcName: NPC3
