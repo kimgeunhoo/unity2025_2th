@@ -15,5 +15,8 @@ MonoBehaviour:
   MinSpeed: 1
   MaxSpeed: 3
   PatrolRadius: 1
+  stopDistance: 0.1
+  patrolDistance: 5
   Sprite: {fileID: -73745757, guid: a93fa3a34c5590742a88fc4b994959ee, type: 3}
   NpcName: NPC1
+  NPCDialogue: Hi! there.

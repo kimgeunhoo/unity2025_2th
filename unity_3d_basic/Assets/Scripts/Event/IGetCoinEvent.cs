@@ -4,10 +4,15 @@ using UnityEngine;
 
 public class IGetCoinEvent : IEvent
 {
-    public int Value;
+    public Coin Coin;
 
-    public IGetCoinEvent(int value)
+    public IGetCoinEvent(Coin coin)
     {
-        Value = value;
+        Coin = coin;
+    }
+
+    public IGetCoinEvent()
+    {
+
     }
 }
