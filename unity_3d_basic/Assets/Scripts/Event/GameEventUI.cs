@@ -9,6 +9,7 @@ public class GameEventUI : MonoBehaviour
 {
     [Header("NPC UI")]
     public GameObject NPCPanel;
+    public GameObject StorePanel;
     public Image NpcSprite;
     public TextMeshProUGUI NpcName;
     public TextMeshProUGUI NpcDialogue;
@@ -26,6 +27,7 @@ public class GameEventUI : MonoBehaviour
     private void Start()
     {
         NPCPanel.SetActive(false);
+        StorePanel.SetActive(false);
     }
 
     private void HandleNPCUI(ICollisionWithPlayerEvent evt)
@@ -35,5 +37,7 @@ public class GameEventUI : MonoBehaviour
         NpcSprite.sprite = (evt.npc.npcInfo.Sprite);
         NpcName.SetText(evt.npc.npcInfo.NpcName);
         NpcDialogue.SetText(evt.npc.npcInfo.NPCDialogue);
+
+        
     }
 }
