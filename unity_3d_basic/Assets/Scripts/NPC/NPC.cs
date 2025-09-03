@@ -195,7 +195,11 @@ public class NPC : MonoBehaviour
             else
             {
                 Debug.LogWarning("정의되지 않은 이벤트가 발생");
+                
             }
+
+            Bus<IScoreUpdateEvent>.Raise(new IScoreUpdateEvent(10)); // 이벤트를 발생시키는 명령어
+            // ScoreManager.Instance.Score += 10; // 데이터 직접 수정하는 코드
 
         }
     }

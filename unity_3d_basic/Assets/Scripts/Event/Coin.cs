@@ -29,10 +29,9 @@ public class Coin : MonoBehaviour
             // 이벤트 코드를 실행시키는 형태.
             // Bus<T>.Raise(new T());
 
-            
+            // 동전 획득시 스코어도 상승
+            Bus<IScoreUpdateEvent>.Raise(new IScoreUpdateEvent(10));
 
         }
     }
-
-
 }
