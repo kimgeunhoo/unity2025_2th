@@ -14,11 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth:
     baseValue: 10
+    modifiers: []
   Strength:
-    baseValue: 0
+    baseValue: 7
+    modifiers: []
   Dexerity:
-    baseValue: 0
+    baseValue: 8
+    modifiers: []
   Intelligence:
-    baseValue: 0
+    baseValue: 6
+    modifiers: []
   Vitality:
     baseValue: 5
+    modifiers: []
